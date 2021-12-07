@@ -1,0 +1,34 @@
+<!--begin::Info-->
+<!--<div class="d-flex align-items-center flex-wrap mr-1">-->
+    <!--begin::Page Heading-->
+    <!--<div class="d-flex align-items-baseline flex-wrap mr-5">-->
+        <!--begin::Page Title-->
+        <!--<h5 class="text-dark font-weight-bold my-1 mr-5">@ViewBag.Title</h5>-->
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <!--<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+            <li class="breadcrumb-item text-muted">
+                <a href="" class="text-muted">@ViewBag.Caption</a>
+            </li>
+        </ul>-->
+        <!--end::Breadcrumb-->
+    <!--</div>-->
+    <!--end::Page Heading-->
+<!--</div>-->
+<!--end::Info-->
+<!--begin::Header Menu Wrapper-->
+<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+    <!--begin::Header Menu-->
+    <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default align-items-center ">
+        <!--begin::Page Title-->
+        <h5 class="text-dark font-weight-bold my-1 mr-5">@ViewBag.Title</h5>
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+            @Html.Raw(ViewBag.Caption)
+        </ul>
+        <!--end::Breadcrumb-->
+    </div>
+    <!--end::Header Menu-->
+</div>
+<!--end::Header Menu Wrapper-->

@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    ViewData["Caption"] = "<li class='breadcrumb-item text-muted'><a href='' class='text-muted'>Admin Settings</a></li>" +
+    "<li class='breadcrumb-item text-muted'><a href='' class='text-muted'>Users</a></li>";
+}
+@section Styles {
+    <style type="text/css">
+        .hide_me {
+            display: none;
+        }
+    </style>
+}
+@section Scripts{
+    <script type="module" src="~/js/users.js"></script>
+}
+
+<!--begin::Card-->
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">
+                Data Users
+                @*<span class="d-block text-muted pt-2 font-size-sm">Load subdatatable in modal</span>*@
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            <a id="new-record" class="btn btn-primary font-weight-bolder">
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>New Record
+            </a>
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Datatable-->
+        <table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
+            <thead>
+                <tr>
+                    <th class="hide_me">username</th>
+                    <th class="hide_me">name</th>
+                    <th width="20%">User</th>
+                    <th width="10%">Email</th>
+                    <th width="5%">IsActive</th>
+                    <th width="5%">Claims</th>
+                    <th width="5%">Actions</th>
+                </tr>
+            </thead>
+        </table>
+        <!--end: Datatable-->
+    </div>
+</div>
+<!--end::Card-->
+<!--begin::Modal-->
+<div id="kt_datatable_modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Form User
+                    <span class="d-block text-muted font-size-sm">Tambah atau edit User</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <form class="form" id="kt_form_1" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">Usename *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control" name="UserName" id="UserName" placeholder="Masukkan Username" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">Nama Lengkap *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control" name="FullName" id="FullName" placeholder="Masukkan Name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">Email *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="email" class="form-control" name="Email" id="Email" placeholder="Masukkan Email" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">No Telpon *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="Masukkan No Telpon" />
+                        </div>
+                    </div>
+                    <div class="form-group row input-password">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">Password *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Masukkan Password" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="hdnId" />
+                    <button type="reset" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold mr-2" name="submitButton" id="submitButton">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
+<!--begin::Claim Modal-->
+<div id="userClaim_modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Daftar Claims <span id="userClaim-title"></span>
+                    <span class="d-block text-muted font-size-sm">Tambah atau hapus daftar claims</span>
+                </h5>
+                <input type="hidden" id="claim_user_id" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form fv-plugins-bootstrap fv-plugins-framework" id="kt_form_2" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group row fv-plugins-icon-container">
+                        <label class="col-form-label text-right col-lg-2 col-sm-12">Pilih Module *</label>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <select name="module_id" id="module_id" class="form-control">
+                                <option value="">Silahkan Pilih</option>
+                                @foreach (var obj in ViewBag.Modules)
+                                {
+                                    <option value="@obj.module_id">@obj.module_name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row fv-plugins-icon-container">
+                        <label class="col-form-label text-right col-lg-2 col-sm-12">Nama Claim *</label>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <select name="claim_value" id="claim_value" class="form-control">
+                                <option value="">Silahkan Pilih</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 ml-lg-auto">
+                        <button type="reset" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary font-weight-bold mr-2" name="submitButton">Submit</button>
+                    </div>
+                </form>
+                <div class="separator separator-dashed" style="margin: 20px 0;"></div>
+                <!--begin: Datatable-->
+                <table class="table table-bordered table-hover table-checkable" id="userClaim_kt_datatable" style="margin-top: 13px !important">
+                    <thead>
+                        <tr>
+                            <th width="40%">Claim Type</th>
+                            <th width="40%">Claim Value</th>
+                            <th width="5%">Hapus</th>
+                        </tr>
+                    </thead>
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Claim Modal-->

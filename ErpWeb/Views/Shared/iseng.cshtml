@@ -1,0 +1,57 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <form id="TestForm3" enctype="multipart/form-data">
+        <button type="submit"> </button>
+    </form>
+   
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+
+            $(document).on('submit', '#TestForm3', function (event) {
+                event.preventDefault();
+
+                var formData = new FormData();
+                formData.append('NIK', "A02");
+                formData.append('Nama', "Hafiz");
+
+                fetch(baseUrl + url, {
+                    method: "POST",
+                    body: formdata,
+                    headers: { "ClientScript": true, "X-ANTI-FORGERY-TOKEN": document.getElementsByName("__RequestVerificationToken")[0].value }
+                }).then(async response => {
+                    //KTApp.unblockPage();
+                    console.log(response);
+                    switch (response.status) {
+                        case 200:
+                            var responseJson = await response.json();
+
+                            //document.getElementsByName("__RequestVerificationToken")[0].value = responseJson.newAntiForgeryToken;
+
+                            if (responseJson.status == "OK") {
+                                console.log("200");
+                            }
+                            break;
+                        case 401:
+                            console.log("401");
+                           
+                            break;
+                        default:
+                            Swal.fire("Error : " + response.status, response.statusText, "error");
+                            break;
+                    }
+                }).catch(err => {
+                    //KTApp.unblockPage();
+                    var errorString = JSON.stringify(err);
+                    console.log(errorString);
+                  
+                });
+               
+            });
+        }, false);
+    </script>
+</body>
+</html>

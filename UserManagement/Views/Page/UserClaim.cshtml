@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "User Claims";
+    ViewData["Caption"] = "<li class='breadcrumb-item text-muted'><a href='' class='text-muted'>Admin Settings</a></li>" +
+    "<li class='breadcrumb-item text-muted'><a href='' class='text-muted'>User Claims</a></li>";
+}
+@section Scripts{
+    <script src="~/js/user-claims.js"></script>
+}
+
+<!--begin::Card-->
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">
+                Data User Claims
+                @*<span class="d-block text-muted pt-2 font-size-sm">Load subdatatable in modal</span>*@
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Button-->
+            <a id="new-record" class="btn btn-primary font-weight-bolder">
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>New Record
+            </a>
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Datatable-->
+        <table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
+            <thead>
+                <tr>
+                    <th>Userid</th>
+                    <th width="20%">Claim Type</th>
+                    <th width="20%">Claim Value</th>
+                    <th width="10%">Actions</th>
+                </tr>
+            </thead>
+        </table>
+        <!--end: Datatable-->
+    </div>
+</div>
+<!--end::Card-->
+<!--begin::Modal-->
+<div id="kt_datatable_modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Form User
+                    <span class="d-block text-muted font-size-sm">Tambah atau edit User</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <form class="form" id="kt_form_1">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">User Name *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <select class="form-control" name="UserId">
+                                <option value="">Silahkan Pilih</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label text-right col-lg-4 col-sm-12">Policy *</label>
+                        <div class="col-lg-8 col-md-9 col-sm-12">
+                            <select class="form-control" name="PlocyId">
+                                <option value="">Silahkan Pilih</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-light-primary font-weight-bold text-uppercase" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold mr-2" name="submitButton">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
